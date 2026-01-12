@@ -7,7 +7,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -23,19 +24,17 @@
                         'brand-gold': '#D4B97A',
                         'brand-dark': '#4A3F35',
                         /* --- Visual Optimization Start --- */
-                        'brand-silk': '#FFF9F0', // 絲綢質感色
+                        'brand-silk': '#FFF9F0', // 新增：絲綢質感色
                         /* --- Visual Optimization End --- */
                     },
                     fontFamily: {
-                        /* --- Typography & Aesthetic Optimization Start --- */
-                        'serif': ['Noto Serif TC', 'Playfair Display', 'serif'],
+                        'serif': ['Playfair Display', 'serif'],
                         'sans': ['Noto Sans TC', 'sans-serif'],
-                        /* --- Typography & Aesthetic Optimization End --- */
                     },
                     animation: {
                         'subtle-zoom': 'subtle-zoom 20s infinite alternate',
                         /* --- Visual Optimization Start --- */
-                        'fade-up': 'fade-up 1.8s cubic-bezier(0.2, 1, 0.3, 1) forwards', 
+                        'fade-up': 'fade-up 1.8s cubic-bezier(0.2, 1, 0.3, 1) forwards', // 延長時間並優化貝茲曲線，增加儀式感
                         /* --- Visual Optimization End --- */
                     },
                     keyframes: {
@@ -45,7 +44,7 @@
                         },
                         'fade-up': {
                             /* --- Visual Optimization Start --- */
-                            'from': { opacity: '0', transform: 'translateY(40px)', filter: 'blur(10px)' }, 
+                            'from': { opacity: '0', transform: 'translateY(40px)', filter: 'blur(10px)' }, // 新增模糊淡入效果
                             'to': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
                             /* --- Visual Optimization End --- */
                         }
@@ -70,31 +69,25 @@
                 @apply w-full bg-transparent border-b border-brand-sand py-3 px-2 focus:border-brand-gold outline-none transition-all duration-300 font-sans;
             }
 
-            /* --- Typography & Aesthetic Optimization Start --- */
-            /* 針對 Hero H1 進行比例縮減與斜體美學處理 */
+            /* --- Visual Optimization Start --- */
+            /* 優化 Hero H1 字體細節 */
             .hero-title {
-                @apply font-serif italic font-light text-brand-cream;
-                /* 縮減字級：創造更多空間感 (使用 clamp 確保移動端也優雅) */
-                font-size: clamp(1.8rem, 6vw, 4rem); 
-                /* 增加開闊字距：0.25em */
-                letter-spacing: 0.25em; 
-                /* 增加行高：讓斜體筆劃有伸展空間 */
-                line-height: 1.8;
-                /* 柔和霧化陰影：提升在複雜花藝背景下的立體感 */
-                text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1);
+                @apply tracking-tight leading-[1.1] text-brand-silk;
+                letter-spacing: -0.02em; /* 雜誌感的大標通常字距較緊湊 */
+                text-shadow: 0 4px 20px rgba(0,0,0,0.15); /* 增加輕微陰影確保在淺色圖上的辨識度 */
             }
 
-            /* 強化背景影像遮罩層次：略微降低對比，讓標題更顯「浮雕」感 */
+            /* 強化背景影像遮罩層次 */
             .hero-overlay {
                 @apply absolute inset-0 z-0;
                 background: linear-gradient(
                     to bottom,
-                    rgba(0, 0, 0, 0.25) 0%,
-                    rgba(74, 63, 53, 0.3) 100%
-                ); 
-                backdrop-filter: brightness(0.95) contrast(1.02) sepia(2%);
+                    rgba(0, 0, 0, 0.35) 0%,
+                    rgba(74, 63, 53, 0.4) 100%
+                ); /* 混合品牌深色，增加溫暖感 */
+                backdrop-filter: brightness(0.9) contrast(1.05) sepia(5%); /* 微調色調讓影像更像膠捲質感 */
             }
-            /* --- Typography & Aesthetic Optimization End --- */
+            /* --- Visual Optimization End --- */
         }
         
         .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
@@ -120,23 +113,23 @@
 
     <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="KL_04049-11.jpg" 
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
                  class="w-full h-full object-cover animate-subtle-zoom">
             
             <div class="hero-overlay"></div>
-        </div>
+            </div>
         
-        <div class="relative z-10 text-center px-4 max-w-6xl">
-            <span class="section-subtitle text-white/70 animate-fade-up tracking-[0.5em] mb-4">A Symphony of Nature & Flavor</span>
+        <div class="relative z-10 text-center px-4">
+            <span class="section-subtitle text-white/80 animate-fade-up">A Symphony of Nature & Flavor</span>
             
-            <h1 class="animate-fade-up hero-title" style="animation-delay: 0.3s">
-                在自然的懷抱裡<br>談一場味蕾的戀愛
+            <h1 class="font-serif text-5xl md:text-8xl mb-10 font-light animate-fade-up hero-title" style="animation-delay: 0.3s">
+                在自然的懷抱裡<br><span class="italic font-normal">談一場味蕾的戀愛</span>
             </h1>
-            <p class="text-white/80 tracking-[0.3em] mt-8 mb-12 font-light text-sm md:text-base animate-fade-up" style="animation-delay: 0.6s">
+            <p class="text-white/80 tracking-[0.2em] mb-12 font-light animate-fade-up" style="animation-delay: 0.6s">
                 我們不只是提供食物，而是為你們的幸福調味
             </p>
             <div class="animate-fade-up" style="animation-delay: 0.9s">
-                <a href="#contact" class="inline-block px-12 py-4 bg-brand-gold text-white rounded-full hover:bg-white hover:text-brand-dark transition-all duration-500 shadow-xl tracking-widest text-xs">
+                <a href="#contact" class="inline-block px-12 py-4 bg-brand-gold text-white rounded-full hover:bg-white hover:text-brand-dark transition-all duration-500 shadow-xl tracking-widest text-sm">
                     START YOUR STORY
                 </a>
             </div>
@@ -151,7 +144,7 @@
             <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24">
                 <div class="md:w-1/2 relative scroll-reveal">
                     <div class="absolute -top-6 -left-6 w-full h-full border border-brand-sand rounded-tr-[100px] z-0"></div>
-                    <img src="S__58662919_0.jpg" 
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                          alt="木人艸職人精神" 
                          class="relative z-10 w-full rounded-tr-[100px] shadow-2xl">
                     <div class="absolute -bottom-8 -right-8 bg-brand-sage p-8 hidden md:block z-20 shadow-xl">
@@ -188,7 +181,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-32">
                 <div class="md:col-span-7 scroll-reveal">
                     <div class="overflow-hidden rounded-2xl shadow-2xl group">
-                        <img src="DSC00517.jpg" 
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                              class="w-full h-[500px] object-cover group-hover:scale-110 transition-transform duration-[2s]">
                     </div>
                 </div>
@@ -227,7 +220,7 @@
                 </div>
                 <div class="md:col-span-7 order-1 md:order-2 scroll-reveal" style="transition-delay: 0.3s">
                     <div class="overflow-hidden rounded-2xl shadow-2xl group">
-                        <img src="DSC00754.jpg" 
+                        <img src="https://images.unsplash.com/photo-1544145945-f904253d0c71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                              class="w-full h-[500px] object-cover group-hover:scale-110 transition-transform duration-[2s]">
                     </div>
                 </div>
@@ -235,8 +228,92 @@
         </div>
     </section>
 
+    <section id="flow" class="py-32 px-6">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-24 scroll-reveal">
+                <span class="section-subtitle">Service Flow</span>
+                <h2 class="section-title">幸福倒數計時</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center scroll-reveal" style="transition-delay: 0.1s">
+                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">01</span>
+                    <h4 class="text-lg font-medium mb-4">初次諮詢</h4>
+                    <p class="text-sm font-light text-brand-dark/60 leading-loose">傾聽你們的愛情故事，規劃專屬的外燴方案。</p>
+                </div>
+                <div class="text-center scroll-reveal" style="transition-delay: 0.3s">
+                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">02</span>
+                    <h4 class="text-lg font-medium mb-4">試菜溝通</h4>
+                    <p class="text-sm font-light text-brand-dark/60 leading-loose">親身品嚐料理滋味，細膩調整每一分口感。</p>
+                </div>
+                <div class="text-center scroll-reveal" style="transition-delay: 0.5s">
+                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">03</span>
+                    <h4 class="text-lg font-medium mb-4">場地勘查</h4>
+                    <p class="text-sm font-light text-brand-dark/60 leading-loose">規劃料理動線，確保當日流程如行雲流水。</p>
+                </div>
+                <div class="text-center scroll-reveal" style="transition-delay: 0.7s">
+                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">04</span>
+                    <h4 class="text-lg font-medium mb-4">完美呈現</h4>
+                    <p class="text-sm font-light text-brand-dark/60 leading-loose">你們安心享受幸福，剩下的美好交給我們。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 px-6 bg-brand-dark">
+        <div class="container mx-auto max-w-4xl">
+            <div class="bg-brand-cream p-12 md:p-20 rounded-sm shadow-2xl relative scroll-reveal">
+                <div class="absolute inset-4 border border-brand-sand/30 pointer-events-none"></div>
+                
+                <div class="text-center mb-16 relative z-10">
+                    <span class="section-subtitle">RSVP</span>
+                    <h2 class="section-title">開啟幸福預約</h2>
+                    <p class="text-brand-dark/60 font-light mt-4">請留下兩位的聯繫資訊，讓我們為你們提案</p>
+                </div>
+
+                <form class="space-y-12 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div>
+                            <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Name</label>
+                            <input type="text" placeholder="如何稱呼兩位新人？" class="input-field">
+                        </div>
+                        <div>
+                            <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Phone</label>
+                            <input type="tel" placeholder="聯繫電話" class="input-field">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Wedding Date & Venue</label>
+                        <input type="text" placeholder="預計在哪片天空下交換誓詞？" class="input-field">
+                    </div>
+                    <div>
+                        <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Dream Wedding</label>
+                        <textarea rows="3" placeholder="描述你們夢想中的婚禮風格..." class="input-field resize-none"></textarea>
+                    </div>
+                    <div class="text-center pt-8">
+                        <button class="bg-brand-dark text-white px-16 py-4 rounded-full hover:bg-brand-gold transition-all duration-500 tracking-[0.3em] text-sm shadow-xl">
+                            SEND INVITATION
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 bg-brand-dark text-white/40 text-center border-t border-white/5">
+        <div class="container mx-auto">
+            <h3 class="font-serif text-2xl text-white mb-8 tracking-widest">木人艸</h3>
+            <div class="flex justify-center space-x-8 mb-12">
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-line text-xl"></i></a>
+            </div>
+            <p class="text-xs tracking-[0.2em] font-light">© 2026 MU ZEN TSAO CATERING. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
     <script>
-        // 導航欄捲動效果
+        // 導航欄捲動效果：變色與縮減 Padding
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
         window.addEventListener('scroll', () => {
@@ -245,6 +322,7 @@
                 navbar.classList.remove('py-6');
                 navLogo.classList.remove('text-white');
                 navLogo.classList.add('text-brand-dark');
+                // 調整選單連結顏色
                 document.querySelectorAll('nav a').forEach(a => {
                     if(!a.classList.contains('px-6')) {
                         a.classList.remove('text-white/90');
@@ -271,7 +349,7 @@
             }
         });
 
-        // 捲動顯示動效
+        // 捲動顯示動效 (Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -280,7 +358,7 @@
             });
         }, { threshold: 0.1 });
 
-            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
