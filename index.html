@@ -7,8 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -23,19 +22,17 @@
                         'brand-cream': '#FDFBF7', // 更暖的奶油白
                         'brand-gold': '#D4B97A',
                         'brand-dark': '#4A3F35',
-                        /* --- Visual Optimization Start --- */
-                        'brand-silk': '#FFF9F0', // 新增：絲綢質感色
-                        /* --- Visual Optimization End --- */
+                        'brand-silk': '#FFF9F0', 
                     },
                     fontFamily: {
-                        'serif': ['Playfair Display', 'serif'],
+                        /* --- Typography Optimization Start --- */
+                        'serif': ['Noto Serif TC', 'Playfair Display', 'serif'],
                         'sans': ['Noto Sans TC', 'sans-serif'],
+                        /* --- Typography Optimization End --- */
                     },
                     animation: {
                         'subtle-zoom': 'subtle-zoom 20s infinite alternate',
-                        /* --- Visual Optimization Start --- */
-                        'fade-up': 'fade-up 1.8s cubic-bezier(0.2, 1, 0.3, 1) forwards', // 延長時間並優化貝茲曲線，增加儀式感
-                        /* --- Visual Optimization End --- */
+                        'fade-up': 'fade-up 1.8s cubic-bezier(0.2, 1, 0.3, 1) forwards', 
                     },
                     keyframes: {
                         'subtle-zoom': {
@@ -43,10 +40,8 @@
                             'to': { transform: 'scale(1.1)' },
                         },
                         'fade-up': {
-                            /* --- Visual Optimization Start --- */
-                            'from': { opacity: '0', transform: 'translateY(40px)', filter: 'blur(10px)' }, // 新增模糊淡入效果
+                            'from': { opacity: '0', transform: 'translateY(40px)', filter: 'blur(10px)' }, 
                             'to': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
-                            /* --- Visual Optimization End --- */
                         }
                     }
                 },
@@ -69,25 +64,36 @@
                 @apply w-full bg-transparent border-b border-brand-sand py-3 px-2 focus:border-brand-gold outline-none transition-all duration-300 font-sans;
             }
 
-            /* --- Visual Optimization Start --- */
-            /* 優化 Hero H1 字體細節 */
+            /* --- Typography Optimization Start --- */
+            /* 針對 Hero H1 重新定義比例與氣氛 */
             .hero-title {
-                @apply tracking-tight leading-[1.1] text-brand-silk;
-                letter-spacing: -0.02em; /* 雜誌感的大標通常字距較緊湊 */
-                text-shadow: 0 4px 20px rgba(0,0,0,0.15); /* 增加輕微陰影確保在淺色圖上的辨識度 */
+                @apply text-brand-cream font-normal;
+                /* 縮小字級：讓背景佈置透出來 */
+                font-size: clamp(2rem, 8vw, 4.5rem); 
+                /* 增加行高與極具開闊感的字距 */
+                line-height: 1.6;
+                letter-spacing: 0.22em; 
+                /* 柔和霧化陰影：提升在淺色背景下的辨識度 */
+                text-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
             }
 
-            /* 強化背景影像遮罩層次 */
+            /* 副標題優化：改為襯線體並增加輕盈感 */
+            .hero-subtitle-refined {
+                @apply font-serif italic tracking-[0.3em] text-white/90 mb-6 block;
+                font-size: clamp(0.75rem, 2vw, 1rem);
+            }
+
+            /* 背景影像遮罩微調：讓佈置更清晰，但保持暖度 */
             .hero-overlay {
                 @apply absolute inset-0 z-0;
                 background: linear-gradient(
                     to bottom,
-                    rgba(0, 0, 0, 0.35) 0%,
-                    rgba(74, 63, 53, 0.4) 100%
-                ); /* 混合品牌深色，增加溫暖感 */
-                backdrop-filter: brightness(0.9) contrast(1.05) sepia(5%); /* 微調色調讓影像更像膠捲質感 */
+                    rgba(0, 0, 0, 0.25) 0%,
+                    rgba(74, 63, 53, 0.35) 100%
+                );
+                backdrop-filter: brightness(0.95) contrast(1.02);
             }
-            /* --- Visual Optimization End --- */
+            /* --- Typography Optimization End --- */
         }
         
         .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
@@ -117,19 +123,19 @@
                  class="w-full h-full object-cover animate-subtle-zoom">
             
             <div class="hero-overlay"></div>
-            </div>
+        </div>
         
-        <div class="relative z-10 text-center px-4">
-            <span class="section-subtitle text-white/80 animate-fade-up">A Symphony of Nature & Flavor</span>
+        <div class="relative z-10 text-center px-4 max-w-5xl">
+            <span class="hero-subtitle-refined animate-fade-up">A Symphony of Nature & Flavor</span>
             
-            <h1 class="font-serif text-5xl md:text-8xl mb-10 font-light animate-fade-up hero-title" style="animation-delay: 0.3s">
-                在自然的懷抱裡<br><span class="italic font-normal">談一場味蕾的戀愛</span>
+            <h1 class="animate-fade-up hero-title" style="animation-delay: 0.3s">
+                在自然的懷抱裡<br>談一場味蕾的戀愛
             </h1>
-            <p class="text-white/80 tracking-[0.2em] mb-12 font-light animate-fade-up" style="animation-delay: 0.6s">
+            <p class="text-white/80 tracking-[0.3em] mt-8 mb-12 font-light text-sm md:text-base animate-fade-up" style="animation-delay: 0.6s">
                 我們不只是提供食物，而是為你們的幸福調味
             </p>
             <div class="animate-fade-up" style="animation-delay: 0.9s">
-                <a href="#contact" class="inline-block px-12 py-4 bg-brand-gold text-white rounded-full hover:bg-white hover:text-brand-dark transition-all duration-500 shadow-xl tracking-widest text-sm">
+                <a href="#contact" class="inline-block px-12 py-4 bg-brand-gold text-white rounded-full hover:bg-white hover:text-brand-dark transition-all duration-500 shadow-xl tracking-widest text-xs">
                     START YOUR STORY
                 </a>
             </div>
@@ -313,7 +319,7 @@
     </footer>
 
     <script>
-        // 導航欄捲動效果：變色與縮減 Padding
+        // 導航欄捲動效果
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
         window.addEventListener('scroll', () => {
@@ -322,7 +328,6 @@
                 navbar.classList.remove('py-6');
                 navLogo.classList.remove('text-white');
                 navLogo.classList.add('text-brand-dark');
-                // 調整選單連結顏色
                 document.querySelectorAll('nav a').forEach(a => {
                     if(!a.classList.contains('px-6')) {
                         a.classList.remove('text-white/90');
@@ -349,7 +354,7 @@
             }
         });
 
-        // 捲動顯示動效 (Intersection Observer)
+        // 捲動顯示動效
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
