@@ -22,17 +22,21 @@
                         'brand-cream': '#FDFBF7', // 更暖的奶油白
                         'brand-gold': '#D4B97A',
                         'brand-dark': '#4A3F35',
-                        'brand-silk': '#FFF9F0', 
+                        /* --- Visual Optimization Start --- */
+                        'brand-silk': '#FFF9F0', // 絲綢質感色
+                        /* --- Visual Optimization End --- */
                     },
                     fontFamily: {
-                        /* --- Typography Optimization Start --- */
+                        /* --- Typography & Aesthetic Optimization Start --- */
                         'serif': ['Noto Serif TC', 'Playfair Display', 'serif'],
                         'sans': ['Noto Sans TC', 'sans-serif'],
-                        /* --- Typography Optimization End --- */
+                        /* --- Typography & Aesthetic Optimization End --- */
                     },
                     animation: {
                         'subtle-zoom': 'subtle-zoom 20s infinite alternate',
+                        /* --- Visual Optimization Start --- */
                         'fade-up': 'fade-up 1.8s cubic-bezier(0.2, 1, 0.3, 1) forwards', 
+                        /* --- Visual Optimization End --- */
                     },
                     keyframes: {
                         'subtle-zoom': {
@@ -40,8 +44,10 @@
                             'to': { transform: 'scale(1.1)' },
                         },
                         'fade-up': {
+                            /* --- Visual Optimization Start --- */
                             'from': { opacity: '0', transform: 'translateY(40px)', filter: 'blur(10px)' }, 
                             'to': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
+                            /* --- Visual Optimization End --- */
                         }
                     }
                 },
@@ -64,36 +70,31 @@
                 @apply w-full bg-transparent border-b border-brand-sand py-3 px-2 focus:border-brand-gold outline-none transition-all duration-300 font-sans;
             }
 
-            /* --- Typography Optimization Start --- */
-            /* 針對 Hero H1 重新定義比例與氣氛 */
+            /* --- Typography & Aesthetic Optimization Start --- */
+            /* 針對 Hero H1 進行比例縮減與斜體美學處理 */
             .hero-title {
-                @apply text-brand-cream font-normal;
-                /* 縮小字級：讓背景佈置透出來 */
-                font-size: clamp(2rem, 8vw, 4.5rem); 
-                /* 增加行高與極具開闊感的字距 */
-                line-height: 1.6;
-                letter-spacing: 0.22em; 
-                /* 柔和霧化陰影：提升在淺色背景下的辨識度 */
-                text-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+                @apply font-serif italic font-light text-brand-cream;
+                /* 縮減字級：創造更多空間感 (使用 clamp 確保移動端也優雅) */
+                font-size: clamp(1.8rem, 6vw, 4rem); 
+                /* 增加開闊字距：0.25em */
+                letter-spacing: 0.25em; 
+                /* 增加行高：讓斜體筆劃有伸展空間 */
+                line-height: 1.8;
+                /* 柔和霧化陰影：提升在複雜花藝背景下的立體感 */
+                text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1);
             }
 
-            /* 副標題優化：改為襯線體並增加輕盈感 */
-            .hero-subtitle-refined {
-                @apply font-serif italic tracking-[0.3em] text-white/90 mb-6 block;
-                font-size: clamp(0.75rem, 2vw, 1rem);
-            }
-
-            /* 背景影像遮罩微調：讓佈置更清晰，但保持暖度 */
+            /* 強化背景影像遮罩層次：略微降低對比，讓標題更顯「浮雕」感 */
             .hero-overlay {
                 @apply absolute inset-0 z-0;
                 background: linear-gradient(
                     to bottom,
                     rgba(0, 0, 0, 0.25) 0%,
-                    rgba(74, 63, 53, 0.35) 100%
-                );
-                backdrop-filter: brightness(0.95) contrast(1.02);
+                    rgba(74, 63, 53, 0.3) 100%
+                ); 
+                backdrop-filter: brightness(0.95) contrast(1.02) sepia(2%);
             }
-            /* --- Typography Optimization End --- */
+            /* --- Typography & Aesthetic Optimization End --- */
         }
         
         .scroll-reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s ease-out; }
@@ -125,8 +126,8 @@
             <div class="hero-overlay"></div>
         </div>
         
-        <div class="relative z-10 text-center px-4 max-w-5xl">
-            <span class="hero-subtitle-refined animate-fade-up">A Symphony of Nature & Flavor</span>
+        <div class="relative z-10 text-center px-4 max-w-6xl">
+            <span class="section-subtitle text-white/70 animate-fade-up tracking-[0.5em] mb-4">A Symphony of Nature & Flavor</span>
             
             <h1 class="animate-fade-up hero-title" style="animation-delay: 0.3s">
                 在自然的懷抱裡<br>談一場味蕾的戀愛
@@ -234,90 +235,6 @@
         </div>
     </section>
 
-    <section id="flow" class="py-32 px-6">
-        <div class="container mx-auto max-w-5xl">
-            <div class="text-center mb-24 scroll-reveal">
-                <span class="section-subtitle">Service Flow</span>
-                <h2 class="section-title">幸福倒數計時</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="text-center scroll-reveal" style="transition-delay: 0.1s">
-                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">01</span>
-                    <h4 class="text-lg font-medium mb-4">初次諮詢</h4>
-                    <p class="text-sm font-light text-brand-dark/60 leading-loose">傾聽你們的愛情故事，規劃專屬的外燴方案。</p>
-                </div>
-                <div class="text-center scroll-reveal" style="transition-delay: 0.3s">
-                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">02</span>
-                    <h4 class="text-lg font-medium mb-4">試菜溝通</h4>
-                    <p class="text-sm font-light text-brand-dark/60 leading-loose">親身品嚐料理滋味，細膩調整每一分口感。</p>
-                </div>
-                <div class="text-center scroll-reveal" style="transition-delay: 0.5s">
-                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">03</span>
-                    <h4 class="text-lg font-medium mb-4">場地勘查</h4>
-                    <p class="text-sm font-light text-brand-dark/60 leading-loose">規劃料理動線，確保當日流程如行雲流水。</p>
-                </div>
-                <div class="text-center scroll-reveal" style="transition-delay: 0.7s">
-                    <span class="font-serif text-5xl text-brand-gold/20 block mb-4 italic">04</span>
-                    <h4 class="text-lg font-medium mb-4">完美呈現</h4>
-                    <p class="text-sm font-light text-brand-dark/60 leading-loose">你們安心享受幸福，剩下的美好交給我們。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-32 px-6 bg-brand-dark">
-        <div class="container mx-auto max-w-4xl">
-            <div class="bg-brand-cream p-12 md:p-20 rounded-sm shadow-2xl relative scroll-reveal">
-                <div class="absolute inset-4 border border-brand-sand/30 pointer-events-none"></div>
-                
-                <div class="text-center mb-16 relative z-10">
-                    <span class="section-subtitle">RSVP</span>
-                    <h2 class="section-title">開啟幸福預約</h2>
-                    <p class="text-brand-dark/60 font-light mt-4">請留下兩位的聯繫資訊，讓我們為你們提案</p>
-                </div>
-
-                <form class="space-y-12 relative z-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div>
-                            <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Name</label>
-                            <input type="text" placeholder="如何稱呼兩位新人？" class="input-field">
-                        </div>
-                        <div>
-                            <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Phone</label>
-                            <input type="tel" placeholder="聯繫電話" class="input-field">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Wedding Date & Venue</label>
-                        <input type="text" placeholder="預計在哪片天空下交換誓詞？" class="input-field">
-                    </div>
-                    <div>
-                        <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Dream Wedding</label>
-                        <textarea rows="3" placeholder="描述你們夢想中的婚禮風格..." class="input-field resize-none"></textarea>
-                    </div>
-                    <div class="text-center pt-8">
-                        <button class="bg-brand-dark text-white px-16 py-4 rounded-full hover:bg-brand-gold transition-all duration-500 tracking-[0.3em] text-sm shadow-xl">
-                            SEND INVITATION
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-20 px-6 bg-brand-dark text-white/40 text-center border-t border-white/5">
-        <div class="container mx-auto">
-            <h3 class="font-serif text-2xl text-white mb-8 tracking-widest">木人艸</h3>
-            <div class="flex justify-center space-x-8 mb-12">
-                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-instagram text-xl"></i></a>
-                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-facebook-f text-xl"></i></a>
-                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-line text-xl"></i></a>
-            </div>
-            <p class="text-xs tracking-[0.2em] font-light">© 2026 MU ZEN TSAO CATERING. ALL RIGHTS RESERVED.</p>
-        </div>
-    </footer>
-
     <script>
         // 導航欄捲動效果
         const navbar = document.getElementById('navbar');
@@ -363,7 +280,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
