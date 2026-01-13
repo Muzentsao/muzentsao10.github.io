@@ -328,22 +328,35 @@
     </footer>
 
     <script>
-        /* --- Fix Auto-scroll Issue Start --- */
-        // 1. 防止瀏覽器在重新整理時記住捲動位置 (手機瀏覽器常見行為)
+        /* --- Mobile Initial Scroll Fix Start --- */
+        /**
+         * 強制重置捲動行為，防止手機端自動跳轉
+         */
+        
+        // 1. 禁用瀏覽器的捲動恢復功能（防止回到上次瀏覽位置）
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
 
-        // 2. 強制頁面載入後立即回到頂端，確保 Hero Section 為第一視覺點
+        // 2. 初始執行一次置頂
         window.scrollTo(0, 0);
 
-        window.addEventListener('load', () => {
-            // 在所有資源載入後再次確認回到頂端，避免異步載入的資源影響高度
-            setTimeout(() => {
-                window.scrollTo(0, 0);
-            }, 10);
+        // 3. 針對部分渲染較慢的手機瀏覽器，在 DOM 載入後重置
+        document.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
         });
-        /* --- Fix Auto-scroll Issue End --- */
+
+        // 4. 終極解決方案：在所有資源載入完成後的極短延遲內強制置頂
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'instant' // 使用 instant 避開平滑捲動干擾
+                });
+            }, 50); // 50ms 延遲足以覆蓋大多數行動端的自動跳轉行為
+        });
+        /* --- Mobile Initial Scroll Fix End --- */
 
         // 導航欄捲動效果
         const navbar = document.getElementById('navbar');
@@ -380,8 +393,7 @@
             }
         });
 
-        // 捲動顯示動效 (Intersection Observer)
-        // 經檢視，此腳本僅處理 class 切換，不會觸發捲動行為
+        // 捲動顯示動效
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
