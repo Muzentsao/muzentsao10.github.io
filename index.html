@@ -291,7 +291,7 @@
                         <div>
                             <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Name</label>
                             <input type="text" placeholder="如何稱呼兩位新人？" class="input-field">
-                        </div>
+                            </div>
                         <div>
                             <label class="text-xs uppercase tracking-widest text-brand-gold font-bold">Phone</label>
                             <input type="tel" placeholder="聯繫電話" class="input-field">
@@ -328,6 +328,23 @@
     </footer>
 
     <script>
+        /* --- Fix Auto-scroll Issue Start --- */
+        // 1. 防止瀏覽器在重新整理時記住捲動位置 (手機瀏覽器常見行為)
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        // 2. 強制頁面載入後立即回到頂端，確保 Hero Section 為第一視覺點
+        window.scrollTo(0, 0);
+
+        window.addEventListener('load', () => {
+            // 在所有資源載入後再次確認回到頂端，避免異步載入的資源影響高度
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 10);
+        });
+        /* --- Fix Auto-scroll Issue End --- */
+
         // 導航欄捲動效果
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('nav-logo');
@@ -363,7 +380,8 @@
             }
         });
 
-        // 捲動顯示動效
+        // 捲動顯示動效 (Intersection Observer)
+        // 經檢視，此腳本僅處理 class 切換，不會觸發捲動行為
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
